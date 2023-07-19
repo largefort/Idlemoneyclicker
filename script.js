@@ -20,8 +20,8 @@ function updateDisplay() {
   moneyDisplay.classList.add('dollar-effect');
 
   document.getElementById('mpc').textContent = mpc.toFixed(2);
-  document.getElementById('auto-clicker-cost').textContent = autoClickerCost.toFixed(2);
   document.getElementById('auto-clicker-level').textContent = autoClickerLevel;
+  document.getElementById('auto-clicker-cost').textContent = autoClickerCost.toFixed(2);
 }
 
 // Function to handle the click event
