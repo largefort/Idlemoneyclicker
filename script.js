@@ -29,6 +29,9 @@ const createStreamer = () => {
 const showSetupPage = () => {
     document.getElementById("setupPage").style.display = "block";
     document.getElementById("gamePage").style.display = "none";
+
+    const startStreamingButton = document.getElementById("startStreamingButton");
+    startStreamingButton.addEventListener("click", createStreamer);
 };
 
 const hideSetupPage = () => {
