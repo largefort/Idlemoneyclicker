@@ -17,10 +17,13 @@ if (savedData) {
 
 // Function to update the displayed values
 function updateDisplay() {
-  document.getElementById('money').textContent = money;
+  const moneyDisplay = document.getElementById('money');
+  moneyDisplay.textContent = money.toFixed(2);
+  moneyDisplay.classList.add('dollar-effect');
+
   document.getElementById('mpc').textContent = mpc;
   document.getElementById('mps').textContent = mps;
-  document.getElementById('mps-upgrade-cost').textContent = mpsUpgradeCost;
+  document.getElementById('mps-upgrade-cost').textContent = mpsUpgradeCost.toFixed(2);
 }
 
 // Function to handle the click event
