@@ -7,11 +7,12 @@ let streamerName = "";
 // Check if the game data exists in localStorage
 const savedData = JSON.parse(localStorage.getItem("idleStreamerData"));
 
-// Load existing data or show the setup page
+// Load existing data or show the streamer creator screen
 if (savedData) {
     loadGameData(savedData);
+    showGamePage();
 } else {
-    showSetupPage();
+    showStreamerCreator();
 }
 
 // Function to create a new streamer and start the game
@@ -21,21 +22,17 @@ const createStreamer = () => {
         alert("Please enter a valid streamer name.");
         return;
     }
-    hideSetupPage();
+    hideStreamerCreator();
     showGamePage();
     saveGameData();
 };
 
-const showSetupPage = () => {
-    document.getElementById("setupPage").style.display = "block";
-    document.getElementById("gamePage").style.display = "none";
-
-    const startStreamingButton = document.getElementById("startStreamingButton");
-    startStreamingButton.addEventListener("click", createStreamer);
+const showStreamerCreator = () => {
+    document.getElementById("streamerCreator").style.display = "block";
 };
 
-const hideSetupPage = () => {
-    document.getElementById("setupPage").style.display = "none";
+const hideStreamerCreator = () => {
+    document.getElementById("streamerCreator").style.display = "none";
 };
 
 const showGamePage = () => {
@@ -120,6 +117,4 @@ const loadGameData = (data) => {
     document.getElementById('softwareCost').textContent = (50 * streamingSoftware).toFixed(2);
     document.getElementById('viewerInteraction').textContent = viewerInteraction;
     document.getElementById('interactionCost').textContent = (100 * viewerInteraction).toFixed(2);
-
-    showGamePage();
 };
