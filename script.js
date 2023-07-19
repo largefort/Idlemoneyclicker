@@ -17,7 +17,7 @@ if (savedData) {
 
 // Function to create a new streamer and start the game
 const createStreamer = () => {
-    streamerName = document.getElementById("streamerName").value;
+    streamerName = document.getElementById("streamerNameInput").value;
     if (streamerName.trim() === "") {
         alert("Please enter a valid streamer name.");
         return;
@@ -28,6 +28,7 @@ const createStreamer = () => {
 };
 
 const showStreamerCreator = () => {
+    document.getElementById("gamePage").style.display = "none";
     document.getElementById("streamerCreator").style.display = "block";
 };
 
@@ -108,7 +109,8 @@ const loadGameData = (data) => {
     streamingSoftware = data.streamingSoftware;
     viewerInteraction = data.viewerInteraction;
     streamerName = data.streamerName;
-    document.getElementById("streamerName").value = streamerName;
+    document.getElementById("streamerName").textContent = streamerName;
+    document.getElementById("streamerNameInput").value = streamerName;
 
     updateEarningsDisplay();
     document.getElementById('cameraQuality').textContent = cameraQuality;
