@@ -1,72 +1,122 @@
-// Game variables
-let money = 0;
-let mpc = 1;
-let autoClickerCost = 100;
-let autoClickerLevel = 0;
+let earnings = 0;
+let cameraQuality = 1;
+let streamingSoftware = 1;
+let viewerInteraction = 1;
+let streamerName = "";
 
-// Load data from local storage if available
-const savedData = JSON.parse(localStorage.getItem('idleMoneyClicker'));
+// Check if the game data exists in localStorage
+const savedData = JSON.parse(localStorage.getItem("idleStreamerData"));
+
+// Load existing data or show the setup page
 if (savedData) {
-  money = savedData.money;
-  mpc = savedData.mpc;
-  autoClickerCost = savedData.autoClickerCost;
-  autoClickerLevel = savedData.autoClickerLevel;
+    loadGameData(savedData);
+} else {
+    showSetupPage();
 }
 
-// Function to update the displayed values
-function updateDisplay() {
-  const moneyDisplay = document.getElementById('money');
-  moneyDisplay.textContent = money.toFixed(2);
-  moneyDisplay.classList.add('dollar-effect');
+// Function to create a new streamer and start the game
+const createStreamer = () => {
+    streamerName = document.getElementById("streamerName").value;
+    if (streamerName.trim() === "") {
+        alert("Please enter a valid streamer name.");
+        return;
+    }
+    hideSetupPage();
+    showGamePage();
+    saveGameData();
+};
 
-  document.getElementById('mpc').textContent = mpc.toFixed(2);
-  document.getElementById('auto-clicker-level').textContent = autoClickerLevel;
-  document.getElementById('auto-clicker-cost').textContent = autoClickerCost.toFixed(2);
-}
+const showSetupPage = () => {
+    document.getElementById("setupPage").style.display = "block";
+    document.getElementById("gamePage").style.display = "none";
+};
 
-// Function to handle the click event
-function handleClick() {
-  money += mpc;
-  updateDisplay();
-}
+const hideSetupPage = () => {
+    document.getElementById("setupPage").style.display = "none";
+};
 
-// Function to handle the buy autoclicker event
-function buyAutoClicker() {
-  if (money >= autoClickerCost) {
-    money -= autoClickerCost;
-    autoClickerLevel++;
-    autoClickerCost = Math.ceil(autoClickerCost * 1.2);
-    updateDisplay();
-  } else {
-    alert('Insufficient funds to buy Autoclicker.');
-  }
-}
+const showGamePage = () => {
+    document.getElementById("gamePage").style.display = "block";
+};
 
-// Function to simulate autoclicker
-function autoclick() {
-  money += autoClickerLevel * mpc;
-  updateDisplay();
-}
+const updateEarningsDisplay = () => {
+    document.getElementById('earnings').textContent = earnings.toFixed(2);
+};
 
-// Function to handle the virtual finger touch
-function handleFingerTouch(event) {
-  const fingerTouch = document.getElementById('finger-touch');
-  fingerTouch.style.left = `${event.pageX - 25}px`;
-  fingerTouch.style.top = `${event.pageY - 25}px`;
-  fingerTouch.style.display = 'block';
+const clickStream = () => {
+    earnings += viewerInteraction;
+    updateEarningsDisplay();
+    saveGameData();
+};
 
-  setTimeout(() => {
-    fingerTouch.style.display = 'none';
-  }, 100);
-}
+const upgradeCamera = () => {
+    const cameraCost = 10 * cameraQuality;
+    if (earnings >= cameraCost) {
+        earnings -= cameraCost;
+        cameraQuality++;
+        document.getElementById('cameraQuality').textContent = cameraQuality;
+        document.getElementById('cameraCost').textContent = (10 * cameraQuality).toFixed(2);
+        updateEarningsDisplay();
+        saveGameData();
+    } else {
+        alert("Not enough earnings to upgrade camera quality!");
+    }
+};
 
-// Event listeners
-document.getElementById('click-btn').addEventListener('click', handleClick);
-document.getElementById('buy-auto-clicker-btn').addEventListener('click', buyAutoClicker);
-document.addEventListener('mousemove', handleFingerTouch);
+const upgradeSoftware = () => {
+    const softwareCost = 50 * streamingSoftware;
+    if (earnings >= softwareCost) {
+        earnings -= softwareCost;
+        streamingSoftware++;
+        document.getElementById('streamingSoftware').textContent = streamingSoftware;
+        document.getElementById('softwareCost').textContent = (50 * streamingSoftware).toFixed(2);
+        updateEarningsDisplay();
+        saveGameData();
+    } else {
+        alert("Not enough earnings to upgrade streaming software!");
+    }
+};
 
-// AutoClicker simulation
-setInterval(autoclick, 1000);
+const upgradeInteraction = () => {
+    const interactionCost = 100 * viewerInteraction;
+    if (earnings >= interactionCost) {
+        earnings -= interactionCost;
+        viewerInteraction++;
+        document.getElementById('viewerInteraction').textContent = viewerInteraction;
+        document.getElementById('interactionCost').textContent = (100 * viewerInteraction).toFixed(2);
+        updateEarningsDisplay();
+        saveGameData();
+    } else {
+        alert("Not enough earnings to upgrade viewer interaction!");
+    }
+};
 
-// Initial display update
-updateDisplay();
+const saveGameData = () => {
+    const gameData = {
+        earnings,
+        cameraQuality,
+        streamingSoftware,
+        viewerInteraction,
+        streamerName,
+    };
+    localStorage.setItem("idleStreamerData", JSON.stringify(gameData));
+};
+
+const loadGameData = (data) => {
+    earnings = data.earnings;
+    cameraQuality = data.cameraQuality;
+    streamingSoftware = data.streamingSoftware;
+    viewerInteraction = data.viewerInteraction;
+    streamerName = data.streamerName;
+    document.getElementById("streamerName").value = streamerName;
+
+    updateEarningsDisplay();
+    document.getElementById('cameraQuality').textContent = cameraQuality;
+    document.getElementById('cameraCost').textContent = (10 * cameraQuality).toFixed(2);
+    document.getElementById('streamingSoftware').textContent = streamingSoftware;
+    document.getElementById('softwareCost').textContent = (50 * streamingSoftware).toFixed(2);
+    document.getElementById('viewerInteraction').textContent = viewerInteraction;
+    document.getElementById('interactionCost').textContent = (100 * viewerInteraction).toFixed(2);
+
+    showGamePage();
+};
