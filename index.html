@@ -7,11 +7,11 @@
 <body>
     <div class="container">
         <h1>Idle Streamer Simulator</h1>
-        <div id="setupPage">
+        <div id="streamerCreator" style="display: none;">
             <h2>Create Your Streamer</h2>
             <label for="streamerName">Streamer Name:</label>
             <input type="text" id="streamerName" required>
-            <button id="startStreamingButton">Start Streaming</button>
+            <button onclick="createStreamer()">Start Streaming</button>
         </div>
         <div id="gamePage" style="display: none;">
             <div class="streamer">
