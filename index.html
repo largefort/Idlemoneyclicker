@@ -3,26 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Idle Money Clicker</title>
+  <title>AI Virtual Coding Simulator</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Idle Money Clicker</h1>
-    <div class="game-info">
-      <div class="money-display">
-        <p>Money: $<span id="money">0</span></p>
-        <p>Money per Click: $<span id="mpc">1</span></p>
-      </div>
-      <div class="autoclicker-info">
-        <p>Autoclicker Level: <span id="auto-clicker-level">0</span></p>
-        <p>Autoclicker Cost: $<span id="auto-clicker-cost">100</span></p>
-      </div>
-    </div>
-    <button id="click-btn">Click</button>
-    <button id="buy-auto-clicker-btn">Buy Autoclicker</button>
+  <div class="editor">
+    <textarea id="code-editor" placeholder="Write your code here..."></textarea>
+    <button id="run-button">Run</button>
   </div>
-  <div id="finger-touch"></div>
+  <div class="output">
+    <h2>Output:</h2>
+    <pre id="output-container"></pre>
+  </div>
   <script src="script.js"></script>
 </body>
 </html>
