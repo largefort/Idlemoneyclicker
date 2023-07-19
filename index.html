@@ -1,20 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Virtual Coding Simulator</title>
-  <link rel="stylesheet" href="styles.css">
+    <title>Idle Streamer Simulator</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-  <div class="editor">
-    <textarea id="code-editor" placeholder="Write your code here..."></textarea>
-    <button id="run-button">Run</button>
-  </div>
-  <div class="output">
-    <h2>Output:</h2>
-    <pre id="output-container"></pre>
-  </div>
-  <script src="script.js"></script>
+    <div class="container">
+        <h1>Idle Streamer Simulator</h1>
+        <div id="setupPage">
+            <h2>Create Your Streamer</h2>
+            <label for="streamerName">Streamer Name:</label>
+            <input type="text" id="streamerName" required>
+            <button onclick="createStreamer()">Start Streaming</button>
+        </div>
+        <div id="gamePage" style="display: none;">
+            <div class="streamer">
+                <img src="streamer.png" alt="Streamer">
+                <p>Earnings: $<span id="earnings">0</span></p>
+                <button onclick="clickStream()">Click Stream</button>
+            </div>
+            <div class="upgrades">
+                <h2>Upgrades</h2>
+                <p>Camera Quality: <span id="cameraQuality">1</span></p>
+                <button onclick="upgradeCamera()">Upgrade Camera ($<span id="cameraCost">10</span>)</button>
+                <p>Streaming Software: <span id="streamingSoftware">1</span></p>
+                <button onclick="upgradeSoftware()">Upgrade Software ($<span id="softwareCost">50</span>)</button>
+                <p>Viewer Interaction: <span id="viewerInteraction">1</span></p>
+                <button onclick="upgradeInteraction()">Upgrade Interaction ($<span id="interactionCost">100</span>)</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
