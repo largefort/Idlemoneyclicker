@@ -1,18 +1,16 @@
 // Game variables
 let money = 0;
 let mpc = 1;
-let mps = 0;
-let mpsUpgradeCost = 50; // Initial cost of MPS upgrade
-let mpsUpgradeMultiplier = 1.2; // Multiplier to increase MPS upgrade cost
-let mpsUpgradeValue = 1; // Amount to increase MPS by on each upgrade
+let autoClickerCost = 100;
+let autoClickerLevel = 0;
 
 // Load data from local storage if available
 const savedData = JSON.parse(localStorage.getItem('idleMoneyClicker'));
 if (savedData) {
   money = savedData.money;
   mpc = savedData.mpc;
-  mps = savedData.mps;
-  mpsUpgradeCost = savedData.mpsUpgradeCost;
+  autoClickerCost = savedData.autoClickerCost;
+  autoClickerLevel = savedData.autoClickerLevel;
 }
 
 // Function to update the displayed values
@@ -21,9 +19,9 @@ function updateDisplay() {
   moneyDisplay.textContent = money.toFixed(2);
   moneyDisplay.classList.add('dollar-effect');
 
-  document.getElementById('mpc').textContent = mpc;
-  document.getElementById('mps').textContent = mps;
-  document.getElementById('mps-upgrade-cost').textContent = mpsUpgradeCost.toFixed(2);
+  document.getElementById('mpc').textContent = mpc.toFixed(2);
+  document.getElementById('auto-clicker-cost').textContent = autoClickerCost.toFixed(2);
+  document.getElementById('auto-clicker-level').textContent = autoClickerLevel;
 }
 
 // Function to handle the click event
@@ -32,56 +30,43 @@ function handleClick() {
   updateDisplay();
 }
 
-// Function to handle the save event
-function handleSave() {
-  const dataToSave = { money, mpc, mps, mpsUpgradeCost };
-  localStorage.setItem('idleMoneyClicker', JSON.stringify(dataToSave));
-  alert('Game saved!');
-}
-
-// Function to handle the load event
-function handleLoad() {
-  const savedData = JSON.parse(localStorage.getItem('idleMoneyClicker'));
-  if (savedData) {
-    money = savedData.money;
-    mpc = savedData.mpc;
-    mps = savedData.mps;
-    mpsUpgradeCost = savedData.mpsUpgradeCost;
+// Function to handle the buy autoclicker event
+function buyAutoClicker() {
+  if (money >= autoClickerCost) {
+    money -= autoClickerCost;
+    autoClickerLevel++;
+    autoClickerCost = Math.ceil(autoClickerCost * 1.2);
     updateDisplay();
-    alert('Game loaded!');
   } else {
-    alert('No saved data found.');
+    alert('Insufficient funds to buy Autoclicker.');
   }
 }
 
-// Function to upgrade MPS
-function buyMPSUpgrade() {
-  if (money >= mpsUpgradeCost) {
-    money -= mpsUpgradeCost;
-    mps += mpsUpgradeValue;
-    mpsUpgradeCost = Math.ceil(mpsUpgradeCost * mpsUpgradeMultiplier);
-    updateDisplay();
-  } else {
-    alert('Insufficient funds to buy MPS upgrade.');
-  }
+// Function to simulate autoclicker
+function autoclick() {
+  money += autoClickerLevel * mpc;
+  updateDisplay();
 }
 
-// Function to calculate and update money per second (MPS)
-function updateMPS() {
-  setInterval(() => {
-    money += mps;
-    updateDisplay();
-  }, 1000);
+// Function to handle the virtual finger touch
+function handleFingerTouch(event) {
+  const fingerTouch = document.getElementById('finger-touch');
+  fingerTouch.style.left = `${event.pageX - 25}px`;
+  fingerTouch.style.top = `${event.pageY - 25}px`;
+  fingerTouch.style.display = 'block';
+
+  setTimeout(() => {
+    fingerTouch.style.display = 'none';
+  }, 100);
 }
 
 // Event listeners
 document.getElementById('click-btn').addEventListener('click', handleClick);
-document.getElementById('save-btn').addEventListener('click', handleSave);
-document.getElementById('load-btn').addEventListener('click', handleLoad);
-document.getElementById('mps-upgrade-btn').addEventListener('click', buyMPSUpgrade);
+document.getElementById('buy-auto-clicker-btn').addEventListener('click', buyAutoClicker);
+document.addEventListener('mousemove', handleFingerTouch);
 
-// Start updating MPS
-updateMPS();
+// AutoClicker simulation
+setInterval(autoclick, 1000);
 
 // Initial display update
 updateDisplay();
