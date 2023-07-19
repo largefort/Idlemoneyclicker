@@ -1,45 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Idle Streamer Simulator</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Upload Simulator Tycoon</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Idle Streamer Simulator</h1>
-        <div id="gamePage">
-            <div class="streamer">
-                <img src="streamer.png" alt="Streamer" id="streamerImage">
-                <div class="streamer-info">
-                    <p><strong>Streamer Name:</strong> <span id="streamerName"></span></p>
-                    <p><strong>Earnings:</strong> $<span id="earnings">0</span></p>
-                </div>
-                <button onclick="clickStream()">Click Stream</button>
-            </div>
-            <div class="upgrades">
-                <h2>Upgrades</h2>
-                <div class="upgrade-item">
-                    <p>Camera Quality: <span id="cameraQuality">1</span></p>
-                    <button onclick="upgradeCamera()">Upgrade ($<span id="cameraCost">10</span>)</button>
-                </div>
-                <div class="upgrade-item">
-                    <p>Streaming Software: <span id="streamingSoftware">1</span></p>
-                    <button onclick="upgradeSoftware()">Upgrade ($<span id="softwareCost">50</span>)</button>
-                </div>
-                <div class="upgrade-item">
-                    <p>Viewer Interaction: <span id="viewerInteraction">1</span></p>
-                    <button onclick="upgradeInteraction()">Upgrade ($<span id="interactionCost">100</span>)</button>
-                </div>
-            </div>
-        </div>
-        <div id="streamerCreator">
-            <h2>Create Your Streamer</h2>
-            <label for="streamerNameInput">Streamer Name:</label>
-            <input type="text" id="streamerNameInput" required>
-            <button onclick="createStreamer()">Start Streaming</button>
-        </div>
+  <div class="container">
+    <h1>Upload Simulator Tycoon</h1>
+    <div class="upload-panel">
+      <h2>Upload Panel</h2>
+      <button onclick="upload()">Upload File</button>
+      <p>Current Uploads: <span id="upload-count">0</span></p>
     </div>
+    <div class="upgrade-panel">
+      <h2>Upgrades</h2>
+      <button onclick="buyUpgrade()">Buy Upload Speed Upgrade</button>
+      <p>Upload Speed: <span id="upload-speed">1</span></p>
+      <p>Upload Speed Upgrade Cost: <span id="upgrade-cost">10</span></p>
+    </div>
+    <div class="income-panel">
+      <h2>Income</h2>
+      <p>Money: <span id="money">0</span></p>
+    </div>
+  </div>
 
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
