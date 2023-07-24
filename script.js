@@ -13,7 +13,6 @@ const hireButton = document.getElementById("hireButton");
 const saveButton = document.getElementById("saveButton");
 const loadButton = document.getElementById("loadButton");
 const backgroundMusic = document.getElementById("backgroundMusic");
-const mobileModelsToggle = document.getElementById("mobileModelsToggle");
 
 // Load game state from local storage
 function loadGameState() {
@@ -93,38 +92,11 @@ hireButton.addEventListener("click", hireWorker);
 saveButton.addEventListener("click", saveGameState);
 loadButton.addEventListener("click", loadGameState);
 
-// Animate a DOM element's value from its current value to a new value
-function animateValue(element, newValue) {
-  const startValue = parseInt(element.textContent.replace(/,/g, ''));
-  const endValue = parseInt(newValue.replace(/,/g, ''));
-  const duration = 1; // per seconds
-  const startTime = new Date().getTime();
-  const endTime = startTime + duration;
-  function update() {
-    const currentTime = new Date().getTime();
-    const remainingTime = Math.max(endTime - currentTime, 0);
-    const elapsedTime = duration - remainingTime;
-    const currentValue = Math.round(
-      startValue + (endValue - startValue) * elapsedTime / duration
-    );
-    element.textContent = currentValue.toLocaleString('en-US', { notation: "compact" });
-    if (currentTime < endTime) {
-      requestAnimationFrame(update);
-    }
-  }
-  requestAnimationFrame(update);
-}
-
-// New Event Listener for Mobile Menu
-const mobileMenu = document.getElementById("mobileMenu");
-const mobileMenuButton = document.getElementById("mobileMenuButton");
-mobileMenuButton.addEventListener("click", function() {
-  mobileMenu.style.display = mobileMenu.style.display === "block" ? "none" : "block";
-});
-
-// New Event Listener for Mobile Models Toggle
-mobileModelsToggle.addEventListener("change", function() {
-  // Add the logic to handle mobile models on/off here
+// New Event Listener for Mobile Mode
+const mobileMode = document.getElementById("mobileMode");
+const mobileModeButton = document.getElementById("mobileModeButton");
+mobileModeButton.addEventListener("click", function() {
+  mobileMode.style.display = mobileMode.style.display === "block" ? "none" : "block";
 });
 
 // Adjust layout for mobile or desktop
