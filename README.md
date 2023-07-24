@@ -1,1 +1,1 @@
-# Idlemoneyclicker
+# money-clicker
