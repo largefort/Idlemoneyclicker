@@ -1,14 +1,14 @@
 /* Set default font size and line height */
 html {
-  font-size: 14px;
-  line-height: 1.5;
+  font-size: 16px;
+  line-height: 1.6;
 }
 
 /* Set default font family, background color, and text color */
 body {
-  background-color: #333;
-  color: #fff;
-  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  color: #333;
+  font-family: 'Roboto', Arial, sans-serif;
   margin: 0;
   padding: 0;
 }
@@ -19,9 +19,9 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  height: 60vh;
+  height: 80vh;
   margin: 0 auto;
-  max-width: 900px;
+  max-width: 1200px; /* Adjusted max width for desktop layout */
 }
 
 /* Style game buttons */
@@ -29,45 +29,45 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-bottom: 20px;
+  margin-bottom: 20px; /* Adjusted margin for better spacing */
 }
 
 .button {
   align-items: center;
-  background-color: #fc0;
+  background-color: #4CAF50;
   border: none;
-  border-radius: 8px;
-  color: #333;
+  border-radius: 10px;
+  color: #fff;
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  font-size: 28px;
-  height: 50px;
+  font-size: 18px;
+  font-weight: bold;
+  height: 60px;
   justify-content: center;
-  margin: 20px;
-  padding: 20px;
+  margin: 10px; /* Adjusted margin for better spacing */
+  padding: 10px 20px;
   text-align: center;
   width: 200px;
   transition: all 0.2s ease-in-out;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
-  position: center;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .button:hover {
-  background-color: #f90;
+  background-color: #45A048;
   transform: translateY(-5px);
-  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
 }
 
 .button:active {
-  background-color: #f60;
+  background-color: #3E874A;
   transform: translateY(0px);
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .button i {
-  font-size: 48px;
-  margin-bottom: 10px;
+  font-size: 24px;
+  margin-bottom: 8px;
 }
 
 /* Style game information */
@@ -85,12 +85,12 @@ body {
 }
 
 .info-label {
-  font-size: 20px;
+  font-size: 18px;
   margin: 0 10px;
 }
 
 .info-value {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
   margin: 0;
 }
@@ -106,36 +106,38 @@ body {
 .save-container button {
   margin: 10px;
   padding: 10px 20px;
-  font-size: 20px;
-  border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 10px;
   border: none;
   cursor: pointer;
-  background-color: #4CAF50;
-  color: white;
+  background-color: #2196F3;
+  color: #fff;
   transition: all 0.2s ease-in-out;
-  box-shadow: 0px 2px 4px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .save-container button:hover {
-  background-color: #3C8C40;
+  background-color: #0D8BE0;
+  transform: translateY(-2px);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
 }
 
 /* Mobile-specific CSS */
-
-/* Adjust font size and line height for smaller screens */
 @media only screen and (max-width: 600px) {
+  /* Adjust font size and line height for smaller screens */
   html {
-    font-size: 12px;
-    line-height: 1.2;
+    font-size: 14px;
+    line-height: 1.5;
   }
 
   /* Adjust button size and margin for smaller screens */
   .button {
-    font-size: 20px;
-    height: 40px;
-    margin: 10px;
-    padding: 10px;
-    width: 150px;
+    font-size: 16px;
+    height: 50px;
+    margin: 8px;
+    padding: 10px 16px;
+    width: 160px;
   }
 
   /* Adjust info label font size for smaller screens */
@@ -145,8 +147,18 @@ body {
 
   /* Adjust save/load button size and margin for smaller screens */
   .save-container button {
-    margin: 5px;
-    padding: 5px 10px;
+    margin: 8px;
+    padding: 8px 14px;
     font-size: 16px;
+  }
+
+  /* Hide desktop container */
+  .desktop-container {
+    display: none;
+  }
+
+  /* Show mobile container */
+  .mobile-container {
+    display: block;
   }
 }
