@@ -14,6 +14,8 @@ const hireButton = document.getElementById("hireButton");
 const saveButton = document.getElementById("saveButton");
 const loadButton = document.getElementById("loadButton");
 const backgroundMusic = document.getElementById("backgroundMusic");
+const mobileModeButton = document.getElementById("mobileModeButton");
+const mobileMode = document.getElementById("mobileMode");
 
 // Load game state from local storage
 function loadGameState() {
@@ -100,9 +102,7 @@ hireButton.addEventListener("click", hireWorker);
 saveButton.addEventListener("click", saveGameState);
 loadButton.addEventListener("click", loadGameState);
 
-// New Event Listener for Mobile Mode
-const mobileMode = document.getElementById("mobileMode");
-const mobileModeButton = document.getElementById("mobileModeButton");
+// Event listener for mobile mode toggle button
 mobileModeButton.addEventListener("click", function() {
   mobileMode.style.display = mobileMode.style.display === "block" ? "none" : "block";
 });
