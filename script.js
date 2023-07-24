@@ -7,6 +7,7 @@ let workers = 0;
 const moneyElement = document.getElementById("money");
 const productsElement = document.getElementById("products");
 const workersElement = document.getElementById("workers");
+const timerElement = document.getElementById("timer");
 const produceButton = document.getElementById("produceButton");
 const sellButton = document.getElementById("sellButton");
 const hireButton = document.getElementById("hireButton");
@@ -85,6 +86,13 @@ function startEarning() {
   }, 3000);
 }
 
+// Timer
+let timer = 0;
+setInterval(() => {
+  timer++;
+  timerElement.textContent = timer;
+}, 1000);
+
 // Event listeners for buttons
 produceButton.addEventListener("click", () => produce(1));
 sellButton.addEventListener("click", sell);
@@ -113,7 +121,8 @@ function adjustLayout() {
   }
 }
 
-// Listen for window resize events to adjust layout
+// Call the adjustLayout function initially and whenever the window is resized
+adjustLayout();
 window.addEventListener("resize", adjustLayout);
 
 // Load game state, start playing music, and start production and earning
@@ -121,3 +130,25 @@ loadGameState();
 backgroundMusic.play();
 startProduction();
 startEarning();
+
+// Animate a DOM element's value from its current value to a new value
+function animateValue(element, newValue) {
+  const startValue = parseInt(element.textContent.replace(/,/g, ''));
+  const endValue = parseInt(newValue.replace(/,/g, ''));
+  const duration = 1; // per seconds
+  const startTime = new Date().getTime();
+  const endTime = startTime + duration;
+  function update() {
+    const currentTime = new Date().getTime();
+    const remainingTime = Math.max(endTime - currentTime, 0);
+    const elapsedTime = duration - remainingTime;
+    const currentValue = Math.round(
+      startValue + (endValue - startValue) * elapsedTime / duration
+    );
+    element.textContent = currentValue.toLocaleString('en-US', { notation: "compact" });
+    if (currentTime < endTime) {
+      requestAnimationFrame(update);
+    }
+  }
+  requestAnimationFrame(update);
+}
