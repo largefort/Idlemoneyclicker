@@ -4,39 +4,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
   <link rel="stylesheet" type="text/css" href="style.css">
-  <style>
-    /* Adjust layout for smaller screens */
-    @media screen and (max-width: 600px) {
-      .button-container {
-        flex-direction: column;
-        align-items: center;
-      }
-      .button {
-        margin: 5px;
-      }
-      .info-container {
-        flex-direction: column;
-        align-items: center;
-      }
-      .info-row {
-        margin: 5px;
-      }
-      .save-container {
-        flex-direction: column;
-        align-items: center;
-      }
-      .fps-counter {
-        display: none;
-      }
-      /* New Style for Mobile Models Toggle */
-      #mobileModelsToggleContainer {
-        margin: 10px;
-      }
-      #mobileModelsToggleContainer label {
-        margin-right: 5px;
-      }
-    }
-  </style>
 </head>
 <body>
   <h1></h1>
@@ -45,9 +12,7 @@
     <button id="produceButton" class="button"><i class="fas fa-tools"></i> Produce</button>
     <button id="sellButton" class="button"><i class="fas fa-money-bill-wave"></i> Sell</button>
     <button id="hireButton" class="button"><i class="fas fa-users"></i> Hire Worker</button>
-    <button id="statsButton" class="button"><i class="fas fa-chart-bar"></i> Statistics</button>
     <button id="fullscreenButton" class="button"><i class="fas fa-expand"></i> Fullscreen</button>
-    <button id="darkModeButton" class="button">Dark Mode</button> <!-- New Feature: Dark Mode Toggle -->
   </div>
   <div class="info-container">
     <div class="info-row">
@@ -66,25 +31,10 @@
       <p class="info-label">Timer:</p>
       <p class="info-value"><span id="timer">0</span> seconds</p> <!-- New Feature: Timer -->
     </div>
-    <div class="info-row">
-      <p class="info-label">Volume:</p>
-      <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="0.5"> <!-- New Feature: Volume Control -->
-    </div>
-    <div class="info-row">
-      <p class="info-label">Background Color:</p>
-      <input type="color" id="backgroundColorPicker"> <!-- New Feature: Background Color Customization -->
-    </div>
   </div>
   <div class="save-container">
     <button id="saveButton" class="button"><i class="fas fa-save"></i> Save Game</button>
     <button id="loadButton" class="button"><i class="fas fa-folder-open"></i> Load Game</button>
-  </div>
-  <div id="mobileModelsToggleContainer"> <!-- New Container for Mobile Models Toggle -->
-    <label>Mobile Models:</label>
-    <select id="mobileModelsToggle">
-      <option value="on">On</option>
-      <option value="off">Off</option>
-    </select>
   </div>
   <audio id="backgroundMusic" loop>
     <source src="https://github.com/doomguyslays/idleclicker/raw/main/Cifi.mp3" autoplay="true" width="400" height="300" name="musicPlayer" id="musicPlayer">
