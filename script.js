@@ -76,7 +76,7 @@ function startProduction() {
     produce(workers);
   }, 1000);
 }
-
+ element.textContent = currentValue.toLocaleString('en-US', { notation: "compact" });
 // Function to earn money over time
 function startEarning() {
   setInterval(() => {
