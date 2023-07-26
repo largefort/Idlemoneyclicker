@@ -1,175 +1,261 @@
-body {
+/* Set default font size and line height */
 
-    background-color: #333;
+html {
 
-    color: #fff;
+  font-size: 14px;
 
-    font-family: Arial, sans-serif;
-
-    margin: 0;
-
-    padding: 0;
+  line-height: 1.5;
 
 }
+
+/* Set default font family, background color, and text color */
+
+body {
+
+  background-color: #333;
+
+  color: #fff;
+
+  font-family: Arial, sans-serif;
+
+  margin: 0;
+
+  padding: 0;
+
+}
+
+/* Center the game container and set max width */
 
 .container {
 
-    display: flex;
+  display: flex;
 
-    flex-wrap: wrap;
+  flex-wrap: wrap;
 
-    justify-content: center;
+  justify-content: center;
 
-    align-items: center; /* added */
+  align-items: center;
 
-    height: 7vh; /* added */
+  height: 60vh;
 
-    margin: 0 auto; /* updated */
+  margin: 0 auto;
 
-    max-width: 500px;
+  max-width: 9px;
 
 }
 
+/* Style game buttons */
+
 .button-container {
 
-    display: flex;
+  display: flex;
 
-    flex-wrap: wrap;
+  flex-wrap: wrap;
 
-    justify-content: center;
+  justify-content: center;
 
-    margin-bottom: 0px;
+  margin-bottom: 0px;
 
 }
 
 .button {
 
-    align-items: center;
+  align-items: center;
 
-    background-color: #fc0;
+  background-color: #fc0;
 
-    border: none;
+  border: none;
 
-    border-radius: 3px;
+  border-radius: 8px;
 
-    color: #333;
+  color: #333;
 
-    cursor: pointer;
+  cursor: pointer;
 
-    display: flex;
+  display: flex;
 
-    flex-direction: column;
+  flex-direction: column;
 
-    font-size: 24px;
+  font-size: 28px;
 
-    height: 120px;
+  height: 50px;
 
-    justify-content: center;
+  justify-content: center;
 
-    margin: 10px;
+  margin: 20px;
 
-    padding: 10px;
+  padding: 20px;
 
-    text-align: center;
+  text-align: center;
 
-    width: 150px;
+  width: 200px;
+
+  transition: all 0.2s ease-in-out;
+
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+
+  position: center;
 
 }
 
 .button:hover {
 
-    background-color: #f90;
+  background-color: #f90;
+
+  transform: translateY(-5px);
+
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);
 
 }
 
 .button:active {
 
-    background-color: #f60;
+  background-color: #f60;
+
+  transform: translateY(0px);
+
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
 
 }
 
 .button i {
 
-    font-size: 48px;
+  font-size: 48px;
 
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 
 }
 
+/* Style game information */
+
 .info-container {
 
-    display: flex;
+  display: flex;
 
-    flex-wrap: wrap;
+  flex-wrap: wrap;
 
-    justify-content: center;
+  justify-content: center;
 
 }
 
 .info-row {
 
-    align-items: center;
+  align-items: center;
 
-    display: flex;
+  display: flex;
 
-    flex-wrap: wrap;
+  flex-wrap: wrap;
 
-    margin: 10px 20px;
+  margin: 20px;
 
 }
 
 .info-label {
 
-    font-size: 36px;
+  font-size: 20px;
 
-    margin: 0 10px;
+  margin: 0 10px;
 
 }
 
 .info-value {
 
-    font-size: 36px;
+  font-size: 20px;
 
-    font-weight: bold;
+  font-weight: bold;
 
-    margin: 0;
+  margin: 0;
 
 }
 
+/* Style save/load game buttons */
+
 .save-container {
 
-    display: flex;
+  display: flex;
 
-    flex-wrap: wrap;
+  flex-wrap: wrap;
 
-    justify-content: center;
+  justify-content: center;
 
-    margin-bottom: 0px;
+  margin-bottom: 20px;
 
 }
 
 .save-container button {
 
-    margin: 3px;
+  margin: 10px;
+
+  padding: 10px 20px;
+
+  font-size: 20px;
+
+  border-radius: 8px;
+
+  border: none;
+
+  cursor: pointer;
+
+  background-color: #4CAF50;
+
+  color: white;
+
+  transition: all 0.2s ease-in-out;
+
+  box-shadow: 0px 2px 4px;
 
 }
 
-.money-button {
+.save-container button:hover {
 
-    margin-right: 8px;
+  background-color: #3
+
+@media only screen and (max-width: 600px) {
+
+  /* Adjust font size and line height for smaller screens */
+
+  html {
+
+    font-size: 12px;
+
+    line-height: 1.2;
+
+  }
+
+  /* Adjust button size and margin for smaller screens */
+
+  .button {
+
+    font-size: 20px;
+
+    height: 40px;
+
+    margin: 10px;
+
+    padding: 10px;
+
+    width: 150px;
+
+  }
+
+  /* Adjust info label font size for smaller screens */
+
+  .info-label {
+
+    font-size: 16px;
+
+  }
+
+  /* Adjust save/load button size and margin for smaller screens */
+
+  .save-container button {
+
+    margin: 5px;
+
+    padding: 5px 10px;
+
+    font-size: 16px;
+
+  }
 
 }
-
-.save-button {
-
-    margin-right: 3px;
-
-}
-
-.load-button {
-
-    margin-right: 3px;
-
-}
-
-    
