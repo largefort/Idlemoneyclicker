@@ -192,7 +192,7 @@ function animateValue(element, newValue) {
 
     const currentTime = new Date().getTime();
 
-    const remainingTime = Math.max(endTime - currentTime, 0);
+    const remainingTime = Math.max(endTime - currentTime, 1);
 
     const elapsedTime = duration - remainingTime;
 
