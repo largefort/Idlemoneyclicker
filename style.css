@@ -1,175 +1,118 @@
+/* Set global styles for the body */
 body {
-
     background-color: #333;
-
     color: #fff;
-
     font-family: Arial, sans-serif;
-
     margin: 0;
-
     padding: 0;
-
 }
 
+/* Styling for the main container */
 .container {
-
     display: flex;
-
     flex-wrap: wrap;
-
     justify-content: center;
-
-    align-items: center; /* added */
-
-    height: 7vh; /* added */
-
-    margin: 0 auto; /* updated */
-
+    align-items: center; /* Vertically center items */
+    height: 100vh; /* Changed to occupy the full viewport height */
     max-width: 500px;
-
+    margin: 0 auto; /* Center the container horizontally */
 }
 
+/* Styling for buttons container */
 .button-container {
-
     display: flex;
-
     flex-wrap: wrap;
-
     justify-content: center;
-
-    margin-bottom: 0px;
-
+    margin-bottom: 20px; /* Increased margin for spacing */
 }
 
+/* Styling for the buttons */
 .button {
-
     align-items: center;
-
     background-color: #fc0;
-
     border: none;
-
     border-radius: 3px;
-
     color: #333;
-
     cursor: pointer;
-
     display: flex;
-
     flex-direction: column;
-
     font-size: 24px;
-
     height: 120px;
-
     justify-content: center;
-
     margin: 10px;
-
     padding: 10px;
-
     text-align: center;
-
     width: 150px;
-
 }
 
+/* Hover effect for buttons */
 .button:hover {
-
     background-color: #f90;
-
 }
 
+/* Active (click) effect for buttons */
 .button:active {
-
     background-color: #f60;
-
 }
 
+/* Icon style inside buttons */
 .button i {
-
     font-size: 48px;
-
     margin-bottom: 10px;
-
 }
 
+/* Styling for information container */
 .info-container {
-
     display: flex;
-
     flex-wrap: wrap;
-
     justify-content: center;
-
+    margin-bottom: 20px; /* Increased margin for spacing */
 }
 
+/* Styling for each row of information */
 .info-row {
-
     align-items: center;
-
     display: flex;
-
     flex-wrap: wrap;
-
     margin: 10px 20px;
-
 }
 
+/* Styling for labels in the information rows */
 .info-label {
-
     font-size: 36px;
-
     margin: 0 10px;
-
 }
 
+/* Styling for values in the information rows */
 .info-value {
-
     font-size: 36px;
-
     font-weight: bold;
-
     margin: 0;
-
 }
 
+/* Styling for the save container */
 .save-container {
-
     display: flex;
-
     flex-wrap: wrap;
-
     justify-content: center;
-
-    margin-bottom: 0px;
-
+    margin-bottom: 20px; /* Increased margin for spacing */
 }
 
+/* Margin for buttons inside the save container */
 .save-container button {
-
     margin: 3px;
-
 }
 
+/* Additional class for styling money buttons */
 .money-button {
-
     margin-right: 8px;
-
 }
 
+/* Additional classes for styling different types of save buttons */
 .save-button {
-
     margin-right: 3px;
-
 }
 
 .load-button {
-
     margin-right: 3px;
-
 }
-
-    
