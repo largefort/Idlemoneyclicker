@@ -18,15 +18,15 @@ const backgroundMusic = document.getElementById("backgroundMusic");
 function loadGameState() {
   if (localStorage.getItem("money")) {
     money = parseInt(localStorage.getItem("money"));
-    moneyElement.textContent = formatMoneyWithSuffix(money);
+    moneyElement.textContent = money;
   }
   if (localStorage.getItem("products")) {
     products = parseInt(localStorage.getItem("products"));
-    productsElement.textContent = formatNumberWithSuffix(products);
+    productsElement.textContent = products;
   }
   if (localStorage.getItem("workers")) {
     workers = parseInt(localStorage.getItem("workers"));
-    workersElement.textContent = formatNumberWithSuffix(workers);
+    workersElement.textContent = workers;
   }
   alert("Game loaded!");
 }
@@ -44,26 +44,6 @@ function updateGameState() {
   animateValue(moneyElement, money);
   animateValue(productsElement, products);
   animateValue(workersElement, workers);
-
-  // Add suffix notation for money
-  moneyElement.textContent = formatMoneyWithSuffix(money);
-  // Add suffix notation for products
-  productsElement.textContent = formatNumberWithSuffix(products);
-  // Add suffix notation for workers
-  workersElement.textContent = formatNumberWithSuffix(workers);
-}
-
-// Function to format a number with suffix notation
-function formatNumberWithSuffix(number) {
-  const suffixes = ["", "K", "M", "B", "T"];
-  let suffixIndex = 0;
-
-  while (number >= 1000 && suffixIndex < suffixes.length - 1) {
-    number /= 1000;
-    suffixIndex++;
-  }
-
-  return Math.round(number * 100) / 100 + suffixes[suffixIndex];
 }
 
 // Produce products
