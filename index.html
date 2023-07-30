@@ -1,201 +1,100 @@
 <!DOCTYPE html>
-
 <html>
 
-  <head>
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
-
-    <link rel="stylesheet" type="text/css" href="style.css">
-
-    <style>
-
-      /* Adjust layout for smaller screens */
-
-      @media screen and (max-width: 600px) {
-
-        .button-container {
-
-          flex-direction: column;
-
-          align-items: center;
-
-        }
-
-        .button {
-
-          margin: 5px;
-
-        }
-
-        .info-container {
-
-          flex-direction: column;
-
-          align-items: center;
-
-        }
-
-        .info-row {
-
-          margin: 5px;
-
-        }
-
-        .save-container {
-
-          flex-direction: column;
-
-          align-items: center;
-
-        }
-
-        .fps-counter {
-
-          display: none;
-
-        }
-
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <style>
+    /* Adjust layout for smaller screens */
+    @media screen and (max-width: 600px) {
+      .button-container, .info-container, .save-container {
+        flex-direction: column;
+        align-items: center;
       }
 
-    </style>
+      .button, .info-row {
+        margin: 5px;
+      }
 
-  </head>
+      .fps-counter {
+        display: none;
+      }
+    }
+  </style>
+</head>
 
-  <body>
-
-    <h1></h1>
-
-    <div class="fps-counter">FPS: <span id="fps"></span></div>
-
-    <div class="button-container">
-
-      <button id="produceButton" class="button"><i class="fas fa-tools"></i> Produce</button>
-
-      <button id="sellButton" class="button"><i class="fas fa-money-bill-wave"></i> Sell</button>
-
-      <button id="hireButton" class="button"><i class="fas fa-users"></i> Hire Worker</button>
-
-      <button id="statsButton" class="button"><i class="fas fa-chart-bar"></i> Statistics</button>
-
-      <button id="fullscreenButton" class="button"><i class="fas fa-expand"></i> Fullscreen</button>
-
+<body>
+  <h1></h1>
+  <div class="fps-counter">FPS: <span id="fps"></span></div>
+  <div class="button-container">
+    <button id="produceButton" class="button"><i class="fas fa-tools"></i> Produce</button>
+    <button id="sellButton" class="button"><i class="fas fa-money-bill-wave"></i> Sell</button>
+    <button id="hireButton" class="button"><i class="fas fa-users"></i> Hire Worker</button>
+    <button id="statsButton" class="button"><i class="fas fa-chart-bar"></i> Statistics</button>
+    <button id="fullscreenButton" class="button"><i class="fas fa-expand"></i> Fullscreen</button>
+  </div>
+  <div class="info-container">
+    <div class="info-row">
+      <p class="info-label">Money:</p>
+      <p class="info-value"><span id="money">0</span></p>
     </div>
-
-    <div class="info-container">
-
-      <div class="info-row">
-
-        <p class="info-label">Money:</p>
-
-        <p class="info-value"><span id="money">0</span></p>
-
-      </div>
-
-      <div class="info-row">
-
-        <p class="info-label">Products:</p>
-
-        <p class="info-value"><span id="products">0</span></p>
-
-      </div>
-
-      <div class="info-row">
-
-        <p class="info-label">Workers:</p>
-
-        <p class="info-value"><span id="workers">0</span></p>
-
-      </div>
-
+    <div class="info-row">
+      <p class="info-label">Products:</p>
+      <p class="info-value"><span id="products">0</span></p>
     </div>
-
-    <div class="save-container">
-
-      <button id="saveButton" class="button"><i class="fas fa-save"></i> Save Game</button>
-
-      <button id="loadButton" class="button"><i class="fas fa-folder-open"></i> Load Game</button>
-
+    <div class="info-row">
+      <p class="info-label">Workers:</p>
+      <p class="info-value"><span id="workers">0</span></p>
     </div>
+  </div>
+  <div class="save-container">
+    <button id="saveButton" class="button"><i class="fas fa-save"></i> Save Game</button>
+    <button id="loadButton" class="button"><i class="fas fa-folder-open"></i> Load Game</button>
+  </div>
+  <audio id="backgroundMusic" loop>
+    <source src="https://github.com/doomguyslays/idleclicker/raw/main/Cifi.mp3" autoplay="true" width="400" height="300"
+      name="musicPlayer" id="musicPlayer">
+  </audio>
+  <script src="https://kit.fontawesome.com/4e5e6b1aee.js" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="script.js"></script>
+  <script>
+    var fpsCounter = document.getElementById("fps");
+    var lastTimestamp = performance.now();
+    var frames = 0;
 
-    <audio id="backgroundMusic" loop>
+    function updateFPS() {
+      var currentTimestamp = performance.now();
+      frames++;
 
-      <audio autoplay loop id="musicPlayer">
-
-        <source src="https://github.com/doomguyslays/idleclicker/raw/main/Cifi.mp3" autoplay="true" width="400" height="300" name="musicPlayer" id="musicPlayer">
-
-      </audio>
-
-    </audio>
-
-    <script src="https://kit.fontawesome.com/4e5e6b1aee.js" crossorigin="anonymous"></script>
-
-    <script type="text/javascript" src="script.js"></script>
-
-    <script>
-
-      var fpsCounter = document.getElementById("fps");
-
-      var lastTimestamp = performance.now();
-
-      var frames = 0;
-
-      function updateFPS() {
-
-        var currentTimestamp = performance.now();
-
-        frames++;
-
-        if (currentTimestamp - lastTimestamp >= 1000) {
-
-          fpsCounter.textContent = frames;
-
-          frames = 0;
-
-          lastTimestamp = currentTimestamp;
-
-        }
-
-        requestAnimationFrame(updateFPS);
-
+      if (currentTimestamp - lastTimestamp >= 1000) {
+        fpsCounter.textContent = frames;
+        frames = 0;
+        lastTimestamp = currentTimestamp;
       }
 
       requestAnimationFrame(updateFPS);
+    }
 
-      var fullscreenButton = document.getElementById("fullscreenButton");
+    requestAnimationFrame(updateFPS);
 
-      fullscreenButton.addEventListener("click", function() {
+    var fullscreenButton = document.getElementById("fullscreenButton");
+    fullscreenButton.addEventListener("click", function () {
+      if (document.fullscreenElement) {
+        document.exitFullscreen();
+      } else {
+        document.documentElement.requestFullscreen();
+      }
+    });
 
-        if (document.fullscreenElement) {
-
-          document.exitFullscreen();
-
-        } else {
-
-          document.documentElement.requestFullscreen();
-
-        }
-
-      });
-
-      var statsButton = document.getElementById("statsButton");
-
-      statsButton.addEventListener("click", function() {
-
-        var money = document.getElementById("money").textContent;
-
-        var products = document.getElementById("products").textContent;
-
-        var workers = document.getElementById("workers").textContent;
-
-        alert("Money: " + money + "\nProducts: " + products + "\nWorkers: " + workers);
-
-      });
-
-    </script>
-
-  </body>
+    var statsButton = document.getElementById("statsButton");
+    statsButton.addEventListener("click", function () {
+      var money = document.getElementById("money").textContent;
+      var products = document.getElementById("products").textContent;
+      var workers = document.getElementById("workers").textContent;
+      alert("Money: " + money + "\nProducts: " + products + "\nWorkers: " + workers);
+    });
+  </script>
+</body>
 
 </html>
