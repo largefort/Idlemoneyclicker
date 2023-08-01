@@ -1,22 +1,26 @@
 <style>
   body {
     margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* to make body take up full viewport height */
+    background-color: black;
   }
   
   button {
     background-color: black;
     color: white;
+    border: none; /* remove the default button border */
+    padding: 10px 20px; /* give the button some padding */
   }
   
   div {
-    background-color: black;
     color: white;
-    position: center;
-    bottom: 0;
-    width: 0%;
-    height: 20px;
+    display: flex; /* set the div to be a flex container */
+    justify-content: center; /* center children horizontally */
+    align-items: center; /* center children vertically */
     padding: 20px;
-    opacity: .0;
-    z-index: 1000;
+    opacity: 1.0; /* assuming you want the div to be visible */
   }
 </style>
