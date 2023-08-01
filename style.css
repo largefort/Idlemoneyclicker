@@ -1,0 +1,22 @@
+<style>
+  body {
+    margin: 0;
+  }
+  
+  button {
+    background-color: black;
+    color: white;
+  }
+  
+  div {
+    background-color: black;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 0%;
+    height: 20px;
+    padding: 20px;
+    opacity: .0;
+    z-index: 1000;
+  }
+</style>

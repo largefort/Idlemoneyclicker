@@ -1,0 +1,132 @@
+<html>
+    <head>
+        <script>
+        document.addEventListener("DOMContentLoaded", function() {
+
+var money = 100;
+var moneyPerSecond = 0;
+var moneyPerClick = 1;
+var moneyPerClickUpgrade = 10;
+var moneyPerSecondUpgrade = 1;
+var moneyPerClickUpgradeCost = 10;
+var moneyPerSecondUpgradeCost = 100;
+
+var moneyPerClickUpgradeButton = document.createElement('button');
+moneyPerClickUpgradeButton.innerHTML = 'Upgrade Clicking Power';
+moneyPerClickUpgradeButton.onclick = function() {
+  if (money >= moneyPerClickUpgradeCost) {
+    money -= moneyPerClickUpgradeCost;
+    moneyPerClickUpgrade += 1;
+    moneyPerClickUpgradeCost *= 2;
+    moneyPerClickUpgradeButton.innerHTML = 'Upgrade Clicking Power (' + moneyPerClickUpgradeCost + ')';
+  }
+};
+document.body.appendChild(moneyPerClickUpgradeButton);
+
+var moneyPerSecondUpgradeButton = document.createElement('button');
+moneyPerSecondUpgradeButton.innerHTML = 'Upgrade Money Per Second';
+moneyPerSecondUpgradeButton.onclick = function() {
+  if (money >= moneyPerSecondUpgradeCost) {
+    money -= moneyPerSecondUpgradeCost;
+    moneyPerSecondUpgrade += 1;
+    moneyPerSecondUpgradeCost *= 2;
+    moneyPerSecondUpgradeButton.innerHTML = 'Upgrade Money Per Second (' + moneyPerSecondUpgradeCost + ')';
+  }
+};
+document.body.appendChild(moneyPerSecondUpgradeButton);
+
+var moneyDisplay = document.createElement('div');
+moneyDisplay.innerHTML = 'Money: ' + money;
+document.body.appendChild(moneyDisplay);
+
+var moneyPerSecondDisplay = document.createElement('div');
+moneyPerSecondDisplay.innerHTML = 'Money Per Second: ' + moneyPerSecond;
+document.body.appendChild(moneyPerSecondDisplay);
+
+var moneyPerClickDisplay = document.createElement('div');
+moneyPerClickDisplay.innerHTML = 'Money Per Click: ' + moneyPerClick;
+document.body.appendChild(moneyPerClickDisplay);
+
+var moneyPerClickUpgradeDisplay = document.createElement('div');
+moneyPerClickUpgradeDisplay.innerHTML = 'Money Per Click Upgrade: ' + moneyPerClickUpgrade;
+document.body.appendChild(moneyPerClickUpgradeDisplay);
+
+var moneyPerSecondUpgradeDisplay = document.createElement('div');
+moneyPerSecondUpgradeDisplay.innerHTML = 'Money Per Second Upgrade: ' + moneyPerSecondUpgrade;
+document.body.appendChild(moneyPerSecondUpgradeDisplay);
+
+var moneyPerClickUpgradeCostDisplay = document.createElement('div');
+moneyPerClickUpgradeCostDisplay.innerHTML = 'Money Per Click Upgrade Cost: ' + moneyPerClickUpgradeCost;
+document.body.appendChild(moneyPerClickUpgradeCostDisplay);
+
+var moneyPerSecondUpgradeCostDisplay = document.createElement('div');
+moneyPerSecondUpgradeCostDisplay.innerHTML = 'Money Per Second Upgrade Cost: ' + moneyPerSecondUpgradeCost;
+document.body.appendChild(moneyPerSecondUpgradeCostDisplay);
+
+var moneyButton = document.createElement('button');
+moneyButton.innerHTML = 'Click for Money';
+moneyButton.onclick = function() {
+  money += moneyPerClick + moneyPerClickUpgrade;
+  moneyDisplay.innerHTML = 'Money: ' + money;
+};
+document.body.appendChild(moneyButton);
+
+setInterval(function() {
+  money += moneyPerSecond + moneyPerSecondUpgrade;
+  moneyDisplay.innerHTML = 'Money: ' + money;
+}, 1000);
+
+var gameTheme = document.createElement('div');
+gameTheme.innerHTML = '<style>body { background-color: black; color: white; }</style>';
+document.body.appendChild(gameTheme);
+
+var save = function() {
+  localStorage.setItem('money', money);
+  localStorage.setItem('moneyPerSecond', moneyPerSecond);
+  localStorage.setItem('moneyPerClick', moneyPerClick);
+  localStorage.setItem('moneyPerClickUpgrade', moneyPerClickUpgrade);
+  localStorage.setItem('moneyPerSecondUpgrade', moneyPerSecondUpgrade);
+  localStorage.setItem('moneyPerClickUpgradeCost', moneyPerClickUpgradeCost);
+  localStorage.setItem('moneyPerSecondUpgradeCost', moneyPerSecondUpgradeCost);
+};
+
+var load = function() {
+  money = parseInt(localStorage.getItem('money'));
+  moneyPerSecond = parseInt(localStorage.getItem('moneyPerSecond'));
+  moneyPerClick = parseInt(localStorage.getItem('moneyPerClick'));
+  moneyPerClickUpgrade = parseInt(localStorage.getItem('moneyPerClickUpgrade'));
+  moneyPerSecondUpgrade = parseInt(localStorage.getItem('moneyPerSecondUpgrade'));
+  moneyPerClickUpgradeCost = parseInt(localStorage.getItem('moneyPerClickUpgradeCost'));
+  moneyPerSecondUpgradeCost = parseInt(localStorage.getItem('moneyPerSecondUpgradeCost'));
+};
+
+var saveButton = document.createElement('button');
+saveButton.innerHTML = 'Save';
+saveButton.onclick = function() {
+  save();
+};
+document.body.appendChild(saveButton);
+
+var loadButton = document.createElement('button');
+loadButton.innerHTML = 'Load';
+loadButton.onclick = function() {
+  load();
+};
+document.body.appendChild(loadButton);
+
+var graphicsSettings = document.createElement('div');
+graphicsSettings.innerHTML = '<style>button { background-color: black; color: white; }</style>';
+document.body.appendChild(graphicsSettings);
+});
+        </script>
+    </head>
+    <body style="margin: 0;">
+        <div style="background-color: black; position: fixed; bottom: 0; width: 0%; height: 20px; padding: 20px; opacity: .0; z-index: 1000;">
+            <svg id="Layer_1" data-name="Layer 1" height="40px" width="40px" style="top: -8px;
+            position: relative;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800"><defs><style>.cls-1{fill:#fff;}</style></defs><title>openai-symbol-flat-white</title><path class="cls-1" d="M617.24,354a126.36,126.36,0,0,0-10.86-103.79,127.8,127.8,0,0,0-137.65-61.32,126.36,126.36,0,0,0-95.31-42.49A127.81,127.81,0,0,0,251.5,234.89,126.4,126.4,0,0,0,167,296.19a127.82,127.82,0,0,0,15.72,149.86,126.36,126.36,0,0,0,10.86,103.79,127.81,127.81,0,0,0,137.65,61.32,126.36,126.36,0,0,0,95.31,42.49A127.81,127.81,0,0,0,548.5,565.11,126.4,126.4,0,0,0,633,503.81,127.82,127.82,0,0,0,617.24,354ZM426.58,620.49a94.79,94.79,0,0,1-60.85-22c.77-.42,2.12-1.16,3-1.7l101-58.34a16.42,16.42,0,0,0,8.3-14.37V381.69l42.69,24.65a1.52,1.52,0,0,1,.83,1.17V525.43A95.18,95.18,0,0,1,426.58,620.49ZM222.34,533.26A94.74,94.74,0,0,1,211,469.56c.75.45,2.06,1.25,3,1.79l101,58.34a16.44,16.44,0,0,0,16.59,0l123.31-71.2v49.3a1.53,1.53,0,0,1-.61,1.31L352.19,568.05A95.16,95.16,0,0,1,222.34,533.26ZM195.77,312.77a94.71,94.71,0,0,1,49.48-41.68c0,.87-.05,2.41-.05,3.48V391.25a16.41,16.41,0,0,0,8.29,14.36L376.8,476.8l-42.69,24.65a1.53,1.53,0,0,1-1.44.13l-102.11-59A95.16,95.16,0,0,1,195.77,312.77Zm350.74,81.62L423.2,323.19l42.69-24.64a1.53,1.53,0,0,1,1.44-.13l102.11,58.95a95.08,95.08,0,0,1-14.69,171.55c0-.88,0-2.42,0-3.49V408.75A16.4,16.4,0,0,0,546.51,394.39ZM589,330.44c-.75-.46-2.06-1.25-3-1.79L485,270.31a16.46,16.46,0,0,0-16.59,0l-123.31,71.2v-49.3a1.53,1.53,0,0,1,.61-1.31L447.81,232A95.07,95.07,0,0,1,589,330.44ZM321.89,418.31l-42.7-24.65a1.52,1.52,0,0,1-.83-1.17V274.57a95.07,95.07,0,0,1,155.9-73c-.77.42-2.11,1.16-3,1.7l-101,58.34a16.41,16.41,0,0,0-8.3,14.36Zm23.19-50L400,336.59l54.92,31.7v63.42L400,463.41l-54.92-31.7Z"/></svg>
+            <div style="display: inline-block; color: white; vertical-align: top; margin-top: 4px; font-family: Helvetica, sans-serif;">
+                Code generated by <a style="color: white; text-decoration: none; font-weight: bold;" href="https://openai.com/blog/openai-codex/">OpenAI Codex</a>
+            </div>
+        </div>
+    </body>
+</html>
