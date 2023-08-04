@@ -30,7 +30,6 @@ document.getElementById('clicker').addEventListener('click', () => {
     money += earning;
     clickSound.play();
     updateMoneyDisplay();
-    draw();
 });
 
 // Random bonus
@@ -60,6 +59,61 @@ document.getElementById('upgradeClicker').addEventListener('click', () => {
     }
 });
 
-// Other upgrade handlers would be similar...
+document.getElementById('upgradePassive').addEventListener('click', () => {
+    if (money >= passiveUpgradeCost) {
+        money -= passiveUpgradeCost;
+        passiveIncome += 10;
+        passiveUpgradeCost *= 2;
+        upgradeSound.play();
+        updateMoneyDisplay();
+        updateButtonLabels();
+    }
+});
 
-// Rest of the code...
+document.getElementById('doubleIncome').addEventListener('click', () => {
+    if (money >= doubleIncomeCost) {
+        money -= doubleIncomeCost;
+        doubleIncomeActive = true;
+        upgradeSound.play();
+        updateMoneyDisplay();
+        updateButtonLabels();
+        setTimeout(() => {
+            doubleIncomeActive = false;
+        }, 10000); // Double income lasts for 10 seconds
+    }
+});
+
+document.getElementById('superClicker').addEventListener('click', () => {
+    if (money >= superClickerCost) {
+        money -= superClickerCost;
+        superClickerActive = true;
+        upgradeSound.play();
+        updateMoneyDisplay();
+        updateButtonLabels();
+        setTimeout(() => {
+            superClickerActive = false;
+        }, 10000); // Super clicker lasts for 10 seconds
+    }
+});
+
+// Passive income
+setInterval(() => {
+    money += passiveIncome;
+    updateMoneyDisplay();
+}, 1000); // Increase money by passive income every second
+
+// Update money display
+function updateMoneyDisplay() {
+    document.getElementById('money').innerHTML = `<i class="fas fa-dollar-sign"></i> You have ${money} dollars.`;
+}
+
+// Update button labels
+function updateButtonLabels() {
+    document.getElementById('upgradeClicker').innerHTML = `<i class="fas fa-arrow-up"></i> Upgrade Clicker (Cost: ${clickerUpgradeCost} dollars)`;
+    document.getElementById('upgradePassive').innerHTML = `<i class="fas fa-clock"></i> Upgrade Passive Income (Cost: ${passiveUpgradeCost} dollars)`;
+    document.getElementById('doubleIncome').innerHTML = `<i class="fas fa-times"></i> Double Income for 10 Seconds (Cost: ${doubleIncomeCost} dollars)`;
+    document.getElementById('superClicker').innerHTML = `<i class="fas fa-rocket"></i> Super Clicker for 10 Seconds (Cost: ${superClickerCost} dollars)`;
+}
+
+// On page load, update the button labels
+updateButtonLabels();
