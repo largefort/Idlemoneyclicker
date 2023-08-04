@@ -1,104 +1,22 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <style>
-            .centered {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                height: 100vh;
-            }
-            body {
-                margin: 0;
-                background-color: black;
-                color: white;
-            }
-            button {
-                background-color: black; 
-                color: white; 
-                margin-bottom: 10px;
-            }
-        </style>
-        <script>
-        document.addEventListener("DOMContentLoaded", function() {
+<head>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+</head>
+<body>
+    <h1>Idle Money Clicker</h1>
+    <button id="clicker"><i class="fas fa-hand-pointer"></i> Click me to earn money!</button>
+    <button id="bonus" style="display: none;"><i class="fas fa-gift"></i> BONUS!</button>
+    <p id="money"><i class="fas fa-dollar-sign"></i> You have 0 dollars.</p>
 
-var money = 100;
-var moneyPerSecond = 0;
-var moneyPerClick = 1;
-var moneyPerClickUpgrade = 10;
-var moneyPerSecondUpgrade = 1;
-var moneyPerClickUpgradeCost = 10;
-var moneyPerSecondUpgradeCost = 100;
+    <h2>Upgrades</h2>
+    <button id="upgradeClicker"><i class="fas fa-arrow-up"></i> Upgrade Clicker (Cost: 10 dollars)</button>
+    <button id="upgradePassive"><i class="fas fa-clock"></i> Upgrade Passive Income (Cost: 50 dollars)</button>
+    <button id="doubleIncome"><i class="fas fa-times"></i> Double Income for 10 Seconds (Cost: 100 dollars)</button>
+    <button id="superClicker"><i class="fas fa-rocket"></i> Super Clicker for 10 Seconds (Cost: 500 dollars)</button>
 
-var moneyPerClickUpgradeButton = document.createElement('button');
-moneyPerClickUpgradeButton.innerHTML = 'Upgrade Clicking Power';
-moneyPerClickUpgradeButton.onclick = function() {
-  if (money >= moneyPerClickUpgradeCost) {
-    money -= moneyPerClickUpgradeCost;
-    moneyPerClickUpgrade += 1;
-    moneyPerClickUpgradeCost *= 2;
-    moneyPerClickUpgradeButton.innerHTML = 'Upgrade Clicking Power (' + moneyPerClickUpgradeCost + ')';
-  }
-};
-document.getElementById('centered').appendChild(moneyPerClickUpgradeButton);
-
-var moneyPerSecondUpgradeButton = document.createElement('button');
-moneyPerSecondUpgradeButton.innerHTML = 'Upgrade Money Per Second';
-moneyPerSecondUpgradeButton.onclick = function() {
-  if (money >= moneyPerSecondUpgradeCost) {
-    money -= moneyPerSecondUpgradeCost;
-    moneyPerSecondUpgrade += 1;
-    moneyPerSecondUpgradeCost *= 2;
-    moneyPerSecondUpgradeButton.innerHTML = 'Upgrade Money Per Second (' + moneyPerSecondUpgradeCost + ')';
-  }
-};
-document.getElementById('centered').appendChild(moneyPerSecondUpgradeButton);
-
-var moneyDisplay = document.createElement('div');
-moneyDisplay.innerHTML = 'Money: ' + money;
-document.getElementById('centered').appendChild(moneyDisplay);
-
-var moneyPerSecondDisplay = document.createElement('div');
-moneyPerSecondDisplay.innerHTML = 'Money Per Second: ' + moneyPerSecond;
-document.getElementById('centered').appendChild(moneyPerSecondDisplay);
-
-var moneyPerClickDisplay = document.createElement('div');
-moneyPerClickDisplay.innerHTML = 'Money Per Click: ' + moneyPerClick;
-document.getElementById('centered').appendChild(moneyPerClickDisplay);
-
-var moneyPerClickUpgradeDisplay = document.createElement('div');
-moneyPerClickUpgradeDisplay.innerHTML = 'Money Per Click Upgrade: ' + moneyPerClickUpgrade;
-document.getElementById('centered').appendChild(moneyPerClickUpgradeDisplay);
-
-var moneyPerSecondUpgradeDisplay = document.createElement('div');
-moneyPerSecondUpgradeDisplay.innerHTML = 'Money Per Second Upgrade: ' + moneyPerSecondUpgrade;
-document.getElementById('centered').appendChild(moneyPerSecondUpgradeDisplay);
-
-var moneyPerClickUpgradeCostDisplay = document.createElement('div');
-moneyPerClickUpgradeCostDisplay.innerHTML = 'Money Per Click Upgrade Cost: ' + moneyPerClickUpgradeCost;
-document.getElementById('centered').appendChild(moneyPerClickUpgradeCostDisplay);
-
-var moneyPerSecondUpgradeCostDisplay = document.createElement('div');
-moneyPerSecondUpgradeCostDisplay.innerHTML = 'Money Per Second Upgrade Cost: ' + moneyPerSecondUpgradeCost;
-document.getElementById('centered').appendChild(moneyPerSecondUpgradeCostDisplay);
-
-var moneyButton = document.createElement('button');
-moneyButton.innerHTML = 'Click for Money';
-moneyButton.onclick = function() {
-  money += moneyPerClick + moneyPerClickUpgrade;
-  moneyDisplay.innerHTML = 'Money: ' + money;
-};
-document.getElementById('centered').appendChild(moneyButton);
-
-setInterval(function() {
-  money += moneyPerSecond + moneyPerSecondUpgrade;
-  moneyDisplay.innerHTML = 'Money: ' + money;
-}, 1000);
-
-});
-        </script>
-    </head>
-    <body>
-        <div id="centered" class="centered"></div>
-    </body>
+    <canvas id="myCanvas" width="480" height="320"></canvas>
+    <script src="script.js"></script>
+</body>
 </html>
