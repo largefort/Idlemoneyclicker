@@ -1,26 +1,42 @@
-<style>
-  body {
+body {
+    text-align: center;
+    background-color: #f0f0f0;
+    padding: 0;
     margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* to make body take up full viewport height */
-    background-color: black;
-  }
-  
-  button {
-    background-color: black;
-    color: white;
-    border: none; /* remove the default button border */
-    padding: 10px 20px; /* give the button some padding */
-  }
-  
-  div {
-    color: white;
-    display: flex; /* set the div to be a flex container */
-    justify-content: center; /* center children horizontally */
-    align-items: center; /* center children vertically */
-    padding: 20px;
-    opacity: 1.0; /* assuming you want the div to be visible */
-  }
-</style>
+    font-family: Arial, sans-serif;
+}
+
+button {
+    padding: 1em;
+    font-size: 1.5vw; 
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 15px;
+    margin: 0.5em;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+p, h1, h2 {
+    font-size: 1.5vw;
+    color: #333;
+}
+
+canvas {
+    width: 80vw;
+    height: 20vh;
+    border:1px solid #d3d3d3;
+    background-color: #f1f1f1;
+}
+
+@media only screen and (max-width: 600px) {
+    button, p, h1, h2 {
+        font-size: 4vw;
+    }
+}
