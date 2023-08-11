@@ -1,22 +1,135 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Idle Money Clicker</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+  }
+
+  #header {
+    background-color: #222;
+    color: #fff;
+    padding: 20px;
+  }
+
+  #content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 120px);
+  }
+
+  #game-container {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    max-width: 400px;
+    width: 100%;
+  }
+
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+  }
+
+  button:disabled {
+    background-color: #aaa;
+    cursor: not-allowed;
+  }
+
+  #upgrades {
+    margin-top: 20px;
+    text-align: left;
+  }
+</style>
 </head>
 <body>
-    <h1>Idle Money Clicker</h1>
-    <button id="clicker"><i class="fas fa-hand-pointer"></i> Click me to earn money!</button>
-    <button id="bonus" style="display: none;"><i class="fas fa-gift"></i> BONUS!</button>
-    <p id="money"><i class="fas fa-dollar-sign"></i> You have 0 dollars.</p>
+<div id="header">
+  <h1>Idle Money Clicker</h1>
+</div>
+<div id="content">
+  <div id="game-container">
+    <p>Money: <span id="money">0</span></p>
+    <p>Money per click: <span id="moneyPerClick">1</span></p>
+    <p>Money per second: <span id="moneyPerSecond">0</span></p>
+    <button id="clickButton">Click Me!</button>
+    <div id="upgrades">
+      <h2>Upgrades</h2>
+    </div>
+  </div>
+</div>
 
-    <h2>Upgrades</h2>
-    <button id="upgradeClicker"><i class="fas fa-arrow-up"></i> Upgrade Clicker (Cost: 10 dollars)</button>
-    <button id="upgradePassive"><i class="fas fa-clock"></i> Upgrade Passive Income (Cost: 50 dollars)</button>
-    <button id="doubleIncome"><i class="fas fa-times"></i> Double Income for 10 Seconds (Cost: 100 dollars)</button>
-    <button id="superClicker"><i class="fas fa-rocket"></i> Super Clicker for 10 Seconds (Cost: 500 dollars)</button>
+<script>
+  let money = 0;
+  let moneyPerClick = 1;
+  let moneyPerSecond = 0;
 
-    <canvas id="myCanvas" width="480" height="320"></canvas>
-    <script src="script.js"></script>
+  const upgrades = [
+    { name: 'Click Power', cost: 10, increase: 1, level: 0 },
+    { name: 'Auto Clicker', cost: 50, increase: 0, level: 0 },
+  ];
+
+  const moneyDisplay = document.getElementById('money');
+  const moneyPerClickDisplay = document.getElementById('moneyPerClick');
+  const moneyPerSecondDisplay = document.getElementById('moneyPerSecond');
+  const clickButton = document.getElementById('clickButton');
+  const upgradesContainer = document.getElementById('upgrades');
+
+  function updateDisplays() {
+    moneyDisplay.textContent = money.toFixed(2);
+    moneyPerClickDisplay.textContent = moneyPerClick.toFixed(2);
+    moneyPerSecondDisplay.textContent = moneyPerSecond.toFixed(2);
+  }
+
+  function buyUpgrade(upgradeIndex) {
+    const upgrade = upgrades[upgradeIndex];
+    if (money >= upgrade.cost) {
+      money -= upgrade.cost;
+      upgrade.cost *= 1.5;
+      upgrade.level++;
+      if (upgrade.increase > 0) {
+        moneyPerClick += upgrade.increase;
+      }
+      updateDisplays();
+      updateUpgrades();
+    }
+  }
+
+  function updateUpgrades() {
+    upgradesContainer.innerHTML = '';
+    upgrades.forEach((upgrade, index) => {
+      const upgradeButton = document.createElement('button');
+      upgradeButton.textContent = `${upgrade.name} - Level ${upgrade.level} - Cost: $${upgrade.cost.toFixed(2)}`;
+      upgradeButton.disabled = money < upgrade.cost;
+      upgradeButton.addEventListener('click', () => buyUpgrade(index));
+      upgradesContainer.appendChild(upgradeButton);
+    });
+  }
+
+  clickButton.addEventListener('click', () => {
+    money += moneyPerClick;
+    updateDisplays();
+  });
+
+  setInterval(() => {
+    money += moneyPerSecond;
+    updateDisplays();
+  }, 1000);
+
+  updateUpgrades();
+</script>
 </body>
 </html>
