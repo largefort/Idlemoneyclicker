@@ -4,30 +4,15 @@ let products = 0;
 let workers = 0;
 
 // DOM element variables
-const moneyElement = document.getElementById("money");
-const productsElement = document.getElementById("products");
-const workersElement = document.getElementById("workers");
-const produceButton = document.getElementById("produceButton");
-const sellButton = document.getElementById("sellButton");
-const hireButton = document.getElementById("hireButton");
-const saveButton = document.getElementById("saveButton");
-const loadButton = document.getElementById("loadButton");
-const backgroundMusic = document.getElementById("backgroundMusic");
+const { moneyElement, productsElement, workersElement, produceButton, sellButton, hireButton, saveButton, loadButton, backgroundMusic } = document;
 
 // Load game state from local storage
 function loadGameState() {
-  if (localStorage.getItem("money")) {
-    money = parseInt(localStorage.getItem("money"));
-    moneyElement.textContent = money;
-  }
-  if (localStorage.getItem("products")) {
-    products = parseInt(localStorage.getItem("products"));
-    productsElement.textContent = products;
-  }
-  if (localStorage.getItem("workers")) {
-    workers = parseInt(localStorage.getItem("workers"));
-    workersElement.textContent = workers;
-  }
+  money = parseInt(localStorage.getItem("money")) ?? money;
+  products = parseInt(localStorage.getItem("products")) ?? products;
+  workers = parseInt(localStorage.getItem("workers")) ?? workers;
+
+  updateGameState();
   alert("Game loaded!");
 }
 
@@ -86,23 +71,36 @@ function startEarning() {
 }
 
 // Event listeners for buttons
-produceButton.addEventListener("click", () => produce(1));
-sellButton.addEventListener("click", sell);
-hireButton.addEventListener("click", hireWorker);
-saveButton.addEventListener("click", saveGameState);
-loadButton.addEventListener("click", loadGameState);
+[produceButton, sellButton, hireButton, saveButton, loadButton].forEach(button => {
+  button.addEventListener("click", () => {
+    if (button === produceButton) {
+      produce(1);
+    } else if (button === sellButton) {
+      sell();
+    } else if (button === hireButton) {
+      hireWorker();
+    } else if (button === saveButton) {
+      saveGameState();
+    } else if (button === loadButton) {
+      loadGameState();
+    }
+  });
+});
 
 // Load game state, start playing music, and start production and earning
 loadGameState();
-backgroundMusic.play(true);
+backgroundMusic.play();
 startProduction();
 startEarning();
 
 // Animate a DOM element's value from its current value to a new value
-function animateValue(element, newValue) {
-  const startValue = parseInt(element.textContent);
-  const endValue = newValue;
-  const duration = 1000; // in milliseconds
+const animateValue = (element, newValue) => {
+  const formatter = new Intl.NumberFormat("en-US", { notation: "compact" });
+
+  const startValue = parseInt(element.textContent.replace(/,/g, ""));
+  const endValue = parseInt(newValue);
+
+  const duration = 1000; // 1 second
   const startTime = new Date().getTime();
   const endTime = startTime + duration;
 
@@ -110,14 +108,35 @@ function animateValue(element, newValue) {
     const currentTime = new Date().getTime();
     const remainingTime = Math.max(endTime - currentTime, 0);
     const elapsedTime = duration - remainingTime;
-    const currentValue = Math.round(
-      startValue + (endValue - startValue) * elapsedTime / duration
-    );
-    element.textContent = currentValue;
+    const currentValue = Math.round(startValue + (endValue - startValue) * elapsedTime / duration);
+    element.textContent = formatter.format(currentValue);
+
     if (currentTime < endTime) {
       requestAnimationFrame(update);
     }
   }
 
   requestAnimationFrame(update);
+};
+
+// Function to enter fullscreen mode
+function enableFullscreen() {
+  /*
+
+  This function allows players to enter fullscreen mode
+
+  */
+
+  try {
+    const elem = document.documentElement;
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (elem.webkitRequestFullscreen) { /* Safari */
+      elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) { /* IE11 */
+      elem.msRequestFullscreen();
+    }
+  } catch (error) {
+    console.error(error);
+  }
 }
